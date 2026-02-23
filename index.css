@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+/* Global CSS Variables */
+:root {
+  --color-primary: #bd1920;
+  --color-primary-dark: #a1151a;
+  --color-surface: #f7f5f4;
+  --color-ink: #0f172a;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-gray-900;
+    font-family: 'Manrope', sans-serif;
+    color: var(--color-ink);
+    background: radial-gradient(circle at 85% -15%, #ffe9ea 0%, #fff 42%);
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  ::-moz-selection {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Keyframe Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-12px); 
+  }
+}
+
+@keyframes driftX {
+  0%, 100% { 
+    transform: translateX(0px); 
+  }
+  50% { 
+    transform: translateX(12px); 
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    opacity: 0.35; 
+  }
+  50% { 
+    opacity: 0.7; 
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .fx-grid {
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 78%);
+    mask-image: radial-gradient(circle at center, black 30%, transparent 78%);
+  }
+
+  .fx-sheen {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fx-sheen::before {
+    content: "";
+    position: absolute;
+    inset: -220% auto auto -120%;
+    width: 70%;
+    height: 400%;
+    transform: rotate(18deg);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.18) 46%,
+      transparent 100%
+    );
+    transition: transform 0.8s ease;
+    pointer-events: none;
+  }
+
+  .fx-sheen:hover::before {
+    transform: translateX(250%) rotate(18deg);
+  }
+
+  .rounded-large {
+    @apply rounded-[2rem];
+  }
+}

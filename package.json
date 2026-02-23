@@ -1,0 +1,40 @@
+{
+  "name": "federal-fix---dubai-renovation-fit-out",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run sitemap && vite build && node scripts/prerender-meta-pages.js",
+    "prerender:meta": "node scripts/prerender-meta-pages.js",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "preview": "vite preview",
+    "lint": ".\\node_modules\\.bin\\eslint.cmd . --ext .ts,.tsx,.js,.jsx --ignore-pattern dist --ignore-pattern node_modules",
+    "format": "prettier --write './**/*.{ts,tsx,js,jsx,json,md}'"
+  },
+  "dependencies": {
+    "lucide-react": "^0.563.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
+    "@typescript-eslint/parser": "^8.43.0",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.0.0",
+    "autoprefixer": "^10.4.24",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "prettier": "^3.6.2",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}
