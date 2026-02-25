@@ -22,6 +22,8 @@ const Hero: React.FC = () => {
           <img
             src="/Images/fit-out-projects-1024x538.webp"
             alt="Dubai renovation and fit-out project"
+            width={1024}
+            height={538}
             className="absolute inset-0 h-full w-full object-cover opacity-80"
             loading="eager"
             fetchPriority="high"

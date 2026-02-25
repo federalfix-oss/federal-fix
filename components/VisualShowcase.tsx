@@ -7,19 +7,25 @@ const VisualShowcase: React.FC = () => {
 
   const visuals = [
     {
-      src: '/Services/luxury%20fitout.jpg',
+      src: '/Services/full-fitout-hero.webp',
       label: "Premium Materials",
       size: "md:col-span-7 md:row-span-2",
+      width: 1024,
+      height: 538,
     },
     {
       src: "/Services/Custom-Finishes.webp",
       label: "Custom Finishes",
       size: "md:col-span-5",
+      width: 1070,
+      height: 617,
     },
     {
       src: "/Services/Quality-Control.webp",
       label: "On-Site Quality Control",
       size: "md:col-span-5",
+      width: 574,
+      height: 331,
     },
   ];
 
@@ -80,11 +86,15 @@ const VisualShowcase: React.FC = () => {
               <img
                 src={item.src}
                 alt={item.label}
+                width={item.width}
+                height={item.height}
                 className={`block w-full object-cover transition-transform duration-700 ${
                   idx === 0
                     ? "h-full group-hover:scale-105"
                     : "h-full scale-[1.1] group-hover:scale-[1.16]"
                 }`}
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">

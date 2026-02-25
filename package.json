@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run sitemap && vite build && node scripts/prerender-meta-pages.js",
+    "build": "npm run imported-pages:sync && npm run sitemap && vite build && node scripts/prerender-meta-pages.js",
     "prerender:meta": "node scripts/prerender-meta-pages.js",
+    "imported-pages:sync": "node scripts/sync-imported-pages-json.js",
     "sitemap": "node scripts/generate-sitemap.js",
     "preview": "vite preview",
     "lint": ".\\node_modules\\.bin\\eslint.cmd . --ext .ts,.tsx,.js,.jsx --ignore-pattern dist --ignore-pattern node_modules",

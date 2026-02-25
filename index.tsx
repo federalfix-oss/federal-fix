@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { initTracking } from './lib/tracking';
+import { initTrackingDeferred } from './lib/tracking';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
   throw new Error("Could not find root element to mount to");
 }
 
-initTracking();
+initTrackingDeferred();
 
 const root = ReactDOM.createRoot(rootElement);
 root.render(

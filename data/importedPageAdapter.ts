@@ -1,4 +1,4 @@
-import { ImportedPage } from './importedPages';
+import type { ImportedPage } from './importedPageTypes';
 import { ServicePageData } from './services';
 import { getStockImagesByPath } from './serviceImages';
 

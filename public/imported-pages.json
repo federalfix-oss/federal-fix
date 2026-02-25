@@ -1,6 +1,4 @@
-import type { ImportedPage } from './importedPageTypes';
-
-export const IMPORTED_PAGES: ImportedPage[] = [
+[
   {
     "url": "https://federalfix.com/",
     "path": "/",
@@ -798,7 +796,4 @@ export const IMPORTED_PAGES: ImportedPage[] = [
       "1110, Clover Bay Tower, Al Abraj St - Business Bay. P.O.Box 72177, Dubai, United Arab Emirates"
     ]
   }
-];
-
-export const getImportedPageByPath = (path: string) =>
-  IMPORTED_PAGES.find((page) => page.path === path || page.path === `${path}/`);
+]

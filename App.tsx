@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
@@ -32,6 +32,7 @@ const ServiceRoutePage = lazy(() => import('./components/ServiceRoutePage'));
 const UnknownPathPage = lazy(() => import('./components/UnknownPathPage'));
 
 function App() {
+  const [showDeferredHome, setShowDeferredHome] = useState(false);
   const pathname =
     typeof window !== 'undefined' ? window.location.pathname.replace(/\/+$/, '') || '/' : '/';
   const isHomePage = pathname === '/';
@@ -53,6 +54,34 @@ function App() {
     trackPageView(pathname);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!isHomePage) {
+      setShowDeferredHome(false);
+      return;
+    }
+
+    const win = window as Window & {
+      requestIdleCallback?: (cb: IdleRequestCallback, opts?: IdleRequestOptions) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+
+    let timeoutId: number | undefined;
+    let idleId: number | undefined;
+
+    const reveal = () => setShowDeferredHome(true);
+
+    if (win.requestIdleCallback) {
+      idleId = win.requestIdleCallback(reveal, { timeout: 1500 });
+    } else {
+      timeoutId = window.setTimeout(reveal, 1000);
+    }
+
+    return () => {
+      if (timeoutId) window.clearTimeout(timeoutId);
+      if (idleId && win.cancelIdleCallback) win.cancelIdleCallback(idleId);
+    };
+  }, [isHomePage]);
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -68,27 +97,29 @@ function App() {
             />
             <Hero />
 
-            <Suspense fallback={null}>
-              <QuickProof />
-              <Stats />
-              <VisualShowcase />
-              <TrustCompliance />
+            {showDeferredHome && (
+              <Suspense fallback={null}>
+                <QuickProof />
+                <Stats />
+                <VisualShowcase />
+                <TrustCompliance />
 
-              <Services />
-              <Industries />
+                <Services />
+                <Industries />
 
-              <Process />
+                <Process />
 
-              <FeaturedProjects />
+                <FeaturedProjects />
 
-              {/* <BeforeAfter /> */}
-              <Clients />
+                {/* <BeforeAfter /> */}
+                <Clients />
 
-              <Testimonials />
+                <Testimonials />
 
-              <Contact />
-              <FAQ />
-            </Suspense>
+                <Contact />
+                <FAQ />
+              </Suspense>
+            )}
           </>
         ) : (
           <Suspense fallback={null}>

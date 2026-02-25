@@ -26,14 +26,20 @@ const QuickProof: React.FC = () => {
     {
       src: "/Images/villa-renovation.webp",
       label: "Villa Renovation",
+      width: 849,
+      height: 1080,
     },
     {
-      src: "/Images/Commercial-Fitouts-dubai.webp",
+      src: "/Images/office-renovation.webp",
       label: "Office Fit-Out",
+      width: 900,
+      height: 563,
     },
     {
       src: "/Images/false-ceiling-in-dubai.webp",
       label: "Interior Finishes",
+      width: 469,
+      height: 630,
     },
   ];
 
@@ -97,7 +103,11 @@ const QuickProof: React.FC = () => {
               <img
                 src={proofImages[0].src}
                 alt={proofImages[0].label}
+                width={proofImages[0].width}
+                height={proofImages[0].height}
                 className="h-[420px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
               <div className="absolute left-5 top-5 rounded-full border border-white/30 bg-black/35 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-sm">
@@ -124,7 +134,11 @@ const QuickProof: React.FC = () => {
                   <img
                     src={item.src}
                     alt={item.label}
+                    width={item.width}
+                    height={item.height}
                     className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
                   <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-gray-800">

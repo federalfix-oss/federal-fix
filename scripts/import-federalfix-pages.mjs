@@ -170,11 +170,12 @@ const run = async () => {
     }
   }
 
-  const tsFile = `export type ImportedPage = {\n  url: string;\n  path: string;\n  lastmod: string;\n  title: string;\n  h1: string;\n  description: string;\n  contentBlocks: string[];\n  error?: string;\n};\n\nexport const IMPORTED_PAGES: ImportedPage[] = ${JSON.stringify(output, null, 2)};\n\nexport const getImportedPageByPath = (path: string) =>\n  IMPORTED_PAGES.find((page) => page.path === path || page.path === \`\${path}/\`);\n`;
+  const tsFile = `import type { ImportedPage } from './importedPageTypes';\n\nexport const IMPORTED_PAGES: ImportedPage[] = ${JSON.stringify(output, null, 2)};\n\nexport const getImportedPageByPath = (path: string) =>\n  IMPORTED_PAGES.find((page) => page.path === path || page.path === \`\${path}/\`);\n`;
 
   await fs.writeFile('data/importedPages.ts', tsFile, 'utf8');
+  await fs.writeFile('public/imported-pages.json', `${JSON.stringify(output, null, 2)}\n`, 'utf8');
   // eslint-disable-next-line no-console
-  console.log(`Generated data/importedPages.ts with ${output.length} records`);
+  console.log(`Generated imported pages payload with ${output.length} records`);
 };
 
 run();

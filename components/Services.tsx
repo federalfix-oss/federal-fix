@@ -13,11 +13,11 @@ const Services: React.FC = () => {
   };
 
   const serviceVisuals = [
-    '/Images/fit-out-projects.webp',
+    '/Images/fit-out-projects-1024x538.webp',
     '/Images/civil-works-dubai.webp',
     '/Images/office-renovation.webp',
     '/Images/villa-renovation.webp',
-    '/Images/MEP-works.webp',
+    '/Images/electrical-works.webp',
     '/Images/false-ceiling-in-dubai.webp'
   ];
 
@@ -100,7 +100,11 @@ const Services: React.FC = () => {
                   <img
                     src={serviceVisuals[idx]}
                     alt={service.title}
+                    width={1024}
+                    height={538}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent" />
                   <span className="absolute left-4 top-4 rounded-full border border-white/25 bg-black/30 px-3 py-1 text-[10px] font-bold tracking-[0.14em] text-white">

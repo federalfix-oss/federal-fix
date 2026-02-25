@@ -39,7 +39,7 @@ const Testimonials: React.FC = () => {
   }, [currentIndex, maxIndex]);
 
   useEffect(() => {
-    if (isPaused || maxIndex === 0) {
+    if (isPaused || maxIndex === 0 || !isVisible) {
       return;
     }
 
@@ -48,7 +48,7 @@ const Testimonials: React.FC = () => {
     }, AUTOPLAY_MS);
 
     return () => clearInterval(timer);
-  }, [isPaused, maxIndex]);
+  }, [isPaused, maxIndex, isVisible]);
 
   const goNext = () => setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   const goPrev = () => setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));

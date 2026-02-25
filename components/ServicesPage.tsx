@@ -60,7 +60,7 @@ const ServicesPage: React.FC = () => {
       id: 'fit-out-services',
       category: 'Fit-Out Services',
       icon: Hammer,
-      image: '/Images/Commercial-Fitouts-dubai.webp',
+      image: '/Images/office-renovation.webp',
       accent: '#ff7d82',
       items: [
         'Shell & Core Fit-Out',
@@ -167,7 +167,7 @@ const ServicesPage: React.FC = () => {
   ];
 
   const coreVisuals: Record<string, string> = {
-    'full-fitout': '/Images/fit-out-projects.webp',
+    'full-fitout': '/Images/fit-out-projects-1024x538.webp',
     'shell-core-fitout': '/Images/civil-works-dubai.webp',
     'office-fitout-renovation': '/Images/office-renovation.webp',
     'villa-renovation': '/Images/villa-renovation.webp',
@@ -190,10 +190,13 @@ const ServicesPage: React.FC = () => {
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <div className="relative overflow-hidden rounded-[2rem] border border-gray-200 bg-[#0f1118] p-8 text-white shadow-[0_30px_80px_rgba(0,0,0,0.35)] md:p-12">
           <img
-            src="/Images/Commercial-Fitouts-dubai.webp"
+            src="/Images/fit-out-projects-1024x538.webp"
             alt="Dubai fit-out services"
+            width={1024}
+            height={538}
             className="absolute inset-0 h-full w-full object-cover opacity-30"
             loading="eager"
+            fetchPriority="high"
             decoding="async"
             onError={handleImageError}
           />
@@ -240,6 +243,8 @@ const ServicesPage: React.FC = () => {
                 <img
                   src={coreVisuals[service.id] ?? FALLBACK_IMAGE}
                   alt={service.title}
+                  width={1200}
+                  height={581}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
                   decoding="async"
@@ -307,6 +312,8 @@ const ServicesPage: React.FC = () => {
                   <img
                     src={group.image}
                     alt={group.category}
+                    width={1024}
+                    height={640}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                     decoding="async"
@@ -398,6 +405,5 @@ const ServicesPage: React.FC = () => {
 };
 
 export default ServicesPage;
-
 
 

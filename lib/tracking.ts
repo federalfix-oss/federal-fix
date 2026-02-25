@@ -17,6 +17,9 @@ const metaPixelId = import.meta.env.VITE_META_PIXEL_ID?.trim();
 const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION?.trim();
 
 const hasWindow = typeof window !== 'undefined';
+let isTrackingReady = false;
+const queuedPageViews: string[] = [];
+const queuedLeads: Array<{ source: string; params?: EventParams }> = [];
 
 const addScript = (id: string, src: string, inline?: string) => {
   if (!hasWindow || document.getElementById(id)) {
@@ -102,11 +105,54 @@ export const initTracking = () => {
   setupGoogleTagManager();
   setupGoogleAnalytics();
   setupMetaPixel();
+  isTrackingReady = true;
+
+  queuedPageViews.splice(0).forEach((path) => {
+    trackPageView(path);
+  });
+  queuedLeads.splice(0).forEach((event) => {
+    trackLead(event.source, event.params);
+  });
+};
+
+export const initTrackingDeferred = () => {
+  if (!hasWindow || window._ffTrackingInit) return;
+
+  let timer: number | undefined;
+  const start = () => {
+    if (window._ffTrackingInit) return;
+    if (timer) {
+      window.clearTimeout(timer);
+    }
+    cleanup();
+    initTracking();
+  };
+
+  const cleanup = () => {
+    window.removeEventListener('pointerdown', start);
+    window.removeEventListener('keydown', start);
+    window.removeEventListener('scroll', start);
+    document.removeEventListener('visibilitychange', onVisibilityChange);
+  };
+
+  const onVisibilityChange = () => {
+    if (document.visibilityState === 'visible') start();
+  };
+
+  window.addEventListener('pointerdown', start, { once: true, passive: true });
+  window.addEventListener('keydown', start, { once: true });
+  window.addEventListener('scroll', start, { once: true, passive: true });
+  document.addEventListener('visibilitychange', onVisibilityChange);
+  timer = window.setTimeout(start, 4500);
 };
 
 export const trackPageView = (path?: string) => {
   if (!hasWindow) return;
   const pagePath = path || `${window.location.pathname}${window.location.search}`;
+  if (!isTrackingReady) {
+    queuedPageViews.push(pagePath);
+    return;
+  }
   const pageTitle = document.title;
   if (gtmId) {
     pushDataLayer({ event: 'page_view', page_path: pagePath, page_title: pageTitle });
@@ -120,6 +166,10 @@ export const trackPageView = (path?: string) => {
 
 export const trackLead = (source: string, params?: EventParams) => {
   if (!hasWindow) return;
+  if (!isTrackingReady) {
+    queuedLeads.push({ source, params });
+    return;
+  }
   const payload = { source, ...params };
   if (gtmId) {
     pushDataLayer({ event: 'generate_lead', ...payload });
