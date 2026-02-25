@@ -1,103 +1,6 @@
 import { ImportedPage } from './importedPages';
 import { ServicePageData } from './services';
-
-const STOCK_IMAGES = [
-  '/Images/Commercial-Fitouts-dubai.webp',
-  '/Images/MEP-works.webp',
-  '/Images/false-ceiling-in-dubai.webp',
-  '/Images/home-renovation-dubai.webp',
-  '/Images/villa-renovation.webp',
-];
-
-const pickStockImagesByPath = (path: string): string[] => {
-  const value = path.toLowerCase();
-
-  if (value.includes('office')) {
-    return [
-      '/Images/office-renovation.webp',
-      '/Images/Glass-Partitions-and-Office-Fit-Outs.webp',
-      '/Images/false-ceiling-in-dubai.webp',
-      '/Images/MEP-works.webp',
-      '/Images/Commercial-Fitouts-dubai.webp',
-    ];
-  }
-
-  if (value.includes('villa') || value.includes('home') || value.includes('residential')) {
-    return [
-      '/Images/villa-renovation.webp',
-      '/Images/home-renovation-dubai.webp',
-      '/Images/Kitchen-renovation.webp',
-      '/Images/Bathroom-Works-in-Dubai.webp',
-      '/Images/false-ceiling-in-dubai.webp',
-    ];
-  }
-
-  if (value.includes('retail') || value.includes('showroom') || value.includes('shop')) {
-    return [
-      '/Images/Retail-stores-Fit-outs-in-Dubai.webp',
-      '/Images/Commercial-Fitouts-dubai.webp',
-      '/Images/office-renovation.webp',
-      '/Images/fit-out-projects.webp',
-      '/Images/false-ceiling-in-dubai.webp',
-    ];
-  }
-
-  if (value.includes('restaurant') || value.includes('cafe') || value.includes('hospitality')) {
-    return [
-      '/Images/Hospitality-fit-out-in-dubai.webp',
-      '/Images/Kitchen-renovation.webp',
-      '/Images/MEP-works.webp',
-      '/Images/Commercial-Fitouts-dubai.webp',
-      '/Images/false-ceiling-in-dubai.webp',
-    ];
-  }
-
-  if (
-    value.includes('mep') ||
-    value.includes('hvac') ||
-    value.includes('electrical') ||
-    value.includes('plumbing') ||
-    value.includes('fire') ||
-    value.includes('safety')
-  ) {
-    return [
-      '/Images/MEP-works.webp',
-      '/Images/Mechanical-and-HVAC.webp',
-      '/Images/electrical-works.webp',
-      '/Images/plumbing.webp',
-      '/Images/fire-safety.webp',
-    ];
-  }
-
-  if (
-    value.includes('interior') ||
-    value.includes('gypsum') ||
-    value.includes('ceiling') ||
-    value.includes('tile') ||
-    value.includes('painting') ||
-    value.includes('wallpaper')
-  ) {
-    return [
-      '/Images/false-ceiling-in-dubai.webp',
-      '/Images/gypsum-ceiling-dubai.webp',
-      '/Images/painting-services-in-dubai.webp',
-      '/Images/Tile-Repairs-and-Replacements-dubai.webp',
-      '/Images/home-renovation-dubai.webp',
-    ];
-  }
-
-  if (value.includes('shell') || value.includes('core') || value.includes('civil') || value.includes('structural')) {
-    return [
-      '/Images/civil-works-dubai.webp',
-      '/Images/building-refurbishment.webp',
-      '/Images/MEP-works.webp',
-      '/Images/fit-out-projects.webp',
-      '/Images/Commercial-Fitouts-dubai.webp',
-    ];
-  }
-
-  return STOCK_IMAGES;
-};
+import { getStockImagesByPath } from './serviceImages';
 
 const FALLBACK_BULLETS = [
   'Scope review and technical planning',
@@ -201,7 +104,7 @@ export const mapImportedPageToServiceData = (page: ImportedPage): ServicePageDat
   const sections = buildSections(page.contentBlocks.map(clean));
   const relatedServices = pickRelatedServices(page.path);
   const accentColor = pickColor(page.path);
-  const selectedStockImages = pickStockImagesByPath(page.path);
+  const selectedStockImages = getStockImagesByPath(page.path);
 
   return {
     slug: pathSlug,

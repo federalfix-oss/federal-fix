@@ -117,6 +117,24 @@ const ServicesPage: React.FC = () => {
       ].map((name) => ({ name, slug: toSlug(name) })),
     },
     {
+      id: 'smart-systems-security',
+      category: 'Smart Systems & Security',
+      icon: ShieldCheck,
+      image: '/Images/Structured-Cabling-works.webp',
+      accent: '#78d1cf',
+      items: [
+        'Audio Visuals',
+        'Smart Home Solutions',
+        'Structured Cabling',
+        'CCTV',
+        'Telephony Systems',
+        'Gate Barriers',
+        'Wi-Fi & Network Setup',
+        'Access Control',
+        'IPTV Installation',
+      ].map((name) => ({ name, slug: toSlug(name) })),
+    },
+    {
       id: 'structural-works',
       category: 'Structural Works',
       icon: Building2,
@@ -380,7 +398,6 @@ const ServicesPage: React.FC = () => {
 };
 
 export default ServicesPage;
-
 
 
 

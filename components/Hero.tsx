@@ -1,19 +1,33 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 const Hero: React.FC = () => {
+  const [isVideoEnabled, setIsVideoEnabled] = useState(false);
+
   return (
     <section className="relative flex min-h-[760px] items-center overflow-hidden bg-black pt-20">
-      {/* YouTube Video Background */}
+      {/* Video loads only after explicit user interaction to reduce LCP/FCP cost */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <iframe
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] pointer-events-none"
-          src="https://www.youtube.com/embed/bGiqfPAwh4A?autoplay=1&mute=1&loop=1&playlist=bGiqfPAwh4A&controls=0&modestbranding=1&rel=0"
-          title="Federal Fix - Dubai Renovation"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+        {isVideoEnabled ? (
+          <iframe
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 transform"
+            src="https://www.youtube.com/embed/bGiqfPAwh4A?autoplay=1&mute=1&loop=1&playlist=bGiqfPAwh4A&controls=0&modestbranding=1&rel=0"
+            title="Federal Fix - Dubai Renovation"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <img
+            src="/Images/fit-out-projects-1024x538.webp"
+            alt="Dubai renovation and fit-out project"
+            className="absolute inset-0 h-full w-full object-cover opacity-80"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        )}
       </div>
 
       {/* Dark Overlay for Text Readability */}
@@ -51,6 +65,15 @@ const Hero: React.FC = () => {
             <a href="/services" className="w-full rounded-full border border-white/20 bg-white/10 px-8 py-4 text-center text-lg font-bold text-white backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black active:scale-95 sm:w-auto">
               Explore Services
             </a>
+            {!isVideoEnabled && (
+              <button
+                type="button"
+                onClick={() => setIsVideoEnabled(true)}
+                className="w-full rounded-full border border-white/30 bg-black/35 px-8 py-4 text-center text-lg font-bold text-white transition-all hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black active:scale-95 sm:w-auto"
+              >
+                Play Video
+              </button>
+            )}
           </div>
 
           <p className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium tracking-wide text-gray-300 animate-[fadeIn_1.5s_ease-out_forwards]">

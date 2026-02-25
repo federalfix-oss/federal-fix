@@ -44,7 +44,7 @@ const TrustCompliance: React.FC = () => {
               isVisible ? "animate-[slideUp_0.8s_ease-out_forwards]" : "opacity-0"
             }`}
           >
-            Verified credentials clients can rely on
+            Verified credentials
           </h3>
         </div>
 

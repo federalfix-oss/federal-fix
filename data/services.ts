@@ -1,3 +1,5 @@
+import { applyServiceImageOverrides } from "./serviceImages";
+
 export type ServiceSection = {
   title: string;
   content: string;
@@ -27,7 +29,7 @@ export type ServicePageData = {
   relatedServices: string[];
 };
 
-export const SERVICES_CONTENT: ServicePageData[] = [
+const RAW_SERVICES_CONTENT: ServicePageData[] = [
   {
     slug: "full-fitout",
     title: "Full Fit-Out Solutions in Dubai",
@@ -997,8 +999,712 @@ export const SERVICES_CONTENT: ServicePageData[] = [
       }
     ],
     relatedServices: ["shell-core-fit-out", "office-fit-out"]
+  },
+
+  {
+    slug: "audio-visuals",
+    title: "Audio Visual Systems in Dubai",
+    shortTitle: "Audio Visual Systems",
+    heroImage:
+      "/Images/office-renovation.webp",
+    heroAlt: "Integrated AV system setup for conference and corporate spaces",
+    accentColor: "#5b8def",
+    location: "Dubai, UAE",
+    primaryKeyword: "Audio visual systems Dubai",
+    secondaryKeywords: [
+      "meeting room AV integration",
+      "conference room audio video setup",
+      "corporate signage and display systems"
+    ],
+    intro:
+      "We design and install smart AV systems for meeting rooms, conference spaces, and corporate environments with clear audio, stable video, and easy room control.",
+    galleryImages: [
+      "/Images/office-renovation.webp",
+      "/Images/Commercial-Fitouts-dubai.webp",
+      "/Images/MEP-works.webp",
+      "/Images/fit-out-projects.webp"
+    ],
+    sectionImages: [
+      "/Images/office-renovation.webp",
+      "/Images/Commercial-Fitouts-dubai.webp",
+      "/Images/MEP-works.webp"
+    ],
+    sections: [
+      {
+        title: "AV Scope and Design",
+        content:
+          "Each AV package is planned around room size, use case, and acoustic conditions so the system performs reliably for daily operations.",
+        bullets: [
+          "Display wall and projector planning",
+          "Microphone and speaker zoning",
+          "Conference room camera placement",
+          "Signal routing and hardware selection"
+        ]
+      },
+      {
+        title: "Installation and Integration",
+        content:
+          "Our team installs hardware, routes cables, and integrates room control for simplified user experience across teams.",
+        bullets: [
+          "Rack setup and cable management",
+          "Control panel and touch interface setup",
+          "Unified meeting platform integration",
+          "Digital signage and content routing"
+        ]
+      },
+      {
+        title: "Testing and Handover",
+        content:
+          "Before handover, we validate audio clarity, video quality, and control workflows with user training and support notes.",
+        bullets: [
+          "Functional and performance testing",
+          "User acceptance checks",
+          "Quick-start operation guides",
+          "Post-installation optimization support"
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "Do you provide AV solutions for both boardrooms and open collaboration areas?",
+        answer:
+          "Yes. We tailor AV systems for boardrooms, meeting pods, training rooms, and shared collaboration zones."
+      },
+      {
+        question: "Can AV systems be integrated with existing office IT networks?",
+        answer:
+          "Yes. We coordinate AV deployment with your IT team for secure network integration and stable device management."
+      }
+    ],
+    relatedServices: ["structured-cabling", "wifi-network-setup"]
+  },
+
+  {
+    slug: "smart-home-solutions",
+    title: "Smart Home Solutions in Dubai",
+    shortTitle: "Smart Home Solutions",
+    heroImage:
+      "/Images/home-renovation-dubai.webp",
+    heroAlt: "Smart home automation setup for lighting, climate, and security",
+    accentColor: "#64b88c",
+    location: "Dubai, UAE",
+    primaryKeyword: "Smart home automation Dubai",
+    secondaryKeywords: [
+      "home automation system UAE",
+      "app and voice controlled home systems",
+      "smart lighting and climate control"
+    ],
+    intro:
+      "Federal Fix delivers home automation for lighting, climate, security, and entertainment with centralized app and voice control.",
+    galleryImages: [
+      "/Images/home-renovation-dubai.webp",
+      "/Images/villa-renovation.webp",
+      "/Images/MEP-works.webp",
+      "/Images/home-refurbishment-dubai.webp"
+    ],
+    sectionImages: [
+      "/Images/home-renovation-dubai.webp",
+      "/Images/villa-renovation.webp",
+      "/Images/home-refurbishment-dubai.webp"
+    ],
+    sections: [
+      {
+        title: "Automation Planning",
+        content:
+          "We define automation goals by zone and lifestyle use to make smart systems practical, not over-engineered.",
+        bullets: [
+          "Lighting scene planning",
+          "Climate and schedule automation",
+          "Security and entry integration",
+          "Entertainment control strategy"
+        ]
+      },
+      {
+        title: "System Deployment",
+        content:
+          "Devices, controllers, and communication protocols are installed with structured wiring and clean configuration standards.",
+        bullets: [
+          "Controller and gateway installation",
+          "Smart switch and sensor setup",
+          "Voice assistant integration",
+          "Mobile app provisioning"
+        ]
+      },
+      {
+        title: "Performance and User Handover",
+        content:
+          "We finalize workflows, permissions, and fail-safe behavior so the home remains easy to control and maintain.",
+        bullets: [
+          "Scenario and routine testing",
+          "User role and access setup",
+          "Remote access validation",
+          "Training and maintenance guidance"
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "Can smart home features be installed in existing villas and apartments?",
+        answer:
+          "Yes. We support both retrofit and new-installation projects with phased planning based on existing wiring and finishes."
+      },
+      {
+        question: "Do you support app and voice control together?",
+        answer:
+          "Yes. Systems can be configured for both app and voice control, with user permissions and automation routines customized per household."
+      }
+    ],
+    relatedServices: ["wifi-network-setup", "access-control"]
+  },
+
+  {
+    slug: "structured-cabling",
+    title: "Structured Cabling in Dubai",
+    shortTitle: "Structured Cabling",
+    heroImage:
+      "/Images/Structured-Cabling-works.webp",
+    heroAlt: "Structured cabling infrastructure for data, voice, and video",
+    accentColor: "#4f7fd1",
+    location: "Dubai, UAE",
+    primaryKeyword: "Structured cabling Dubai",
+    secondaryKeywords: [
+      "data voice video cabling UAE",
+      "network cabling contractor Dubai",
+      "server room cabling services"
+    ],
+    intro:
+      "We build reliable structured cabling systems for data, voice, and video across offices, commercial properties, and multi-floor buildings.",
+    galleryImages: [
+      "/Images/Structured-Cabling-works.webp",
+      "/Images/Structured-Cabling-works-1.webp",
+      "/Images/office-renovation.webp",
+      "/Images/MEP-works.webp"
+    ],
+    sectionImages: [
+      "/Images/Structured-Cabling-works.webp",
+      "/Images/Structured-Cabling-works-1.webp",
+      "/Images/office-renovation.webp"
+    ],
+    sections: [
+      {
+        title: "Infrastructure Design",
+        content:
+          "Cabling architecture is designed for current capacity and future expansion, with clear route planning and rack strategy.",
+        bullets: [
+          "Backbone and horizontal layout design",
+          "Cable tray and pathway planning",
+          "Rack elevation and patch panel strategy",
+          "Labeling and documentation standards"
+        ]
+      },
+      {
+        title: "Installation and Termination",
+        content:
+          "Our technicians execute cable pulling, termination, and patching with clean workmanship and signal integrity controls.",
+        bullets: [
+          "Cat6/Cat6A installation and termination",
+          "Fiber optic backbone deployment",
+          "Patch panel and cabinet setup",
+          "Cable testing and certification"
+        ]
+      },
+      {
+        title: "Commissioning and Support",
+        content:
+          "The final stage includes validation, as-built documentation, and readiness for IT operations and service teams.",
+        bullets: [
+          "Fluke-level test reporting",
+          "Port map and asset labeling handover",
+          "Fault isolation support",
+          "Expansion-ready infrastructure planning"
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "Do you handle both copper and fiber cabling?",
+        answer:
+          "Yes. We install and test copper and fiber systems based on speed, distance, and application requirements."
+      },
+      {
+        question: "Can you upgrade existing networks without full replacement?",
+        answer:
+          "Yes. We assess existing infrastructure and provide phased upgrades where practical to reduce downtime and cost."
+      }
+    ],
+    relatedServices: ["wifi-network-setup", "telephony-systems"]
+  },
+
+  {
+    slug: "cctv",
+    title: "CCTV Systems in Dubai",
+    shortTitle: "CCTV Systems",
+    heroImage:
+      "/Images/office-renovation.webp",
+    heroAlt: "High-resolution CCTV system installation with remote access",
+    accentColor: "#5d6f8e",
+    location: "Dubai, UAE",
+    primaryKeyword: "CCTV installation Dubai",
+    secondaryKeywords: [
+      "security camera systems UAE",
+      "video surveillance setup",
+      "remote monitored CCTV solutions"
+    ],
+    intro:
+      "We deliver CCTV systems with high-resolution cameras, storage planning, and remote monitoring for offices, retail units, and facilities.",
+    galleryImages: [
+      "/Images/office-renovation.webp",
+      "/Images/Commercial-Fitouts-dubai.webp",
+      "/Images/Structured-Cabling-works.webp",
+      "/Images/MEP-works.webp"
+    ],
+    sectionImages: [
+      "/Images/office-renovation.webp",
+      "/Images/Structured-Cabling-works.webp",
+      "/Images/Commercial-Fitouts-dubai.webp"
+    ],
+    sections: [
+      {
+        title: "Coverage Planning",
+        content:
+          "Camera coverage is designed to remove blind spots while matching operational zones, lighting conditions, and security priorities.",
+        bullets: [
+          "Site risk and visibility assessment",
+          "Camera type and lens selection",
+          "Critical point coverage design",
+          "Retention and storage planning"
+        ]
+      },
+      {
+        title: "System Installation",
+        content:
+          "Hardware, recording units, and network connectivity are installed with secure routing and clean integration.",
+        bullets: [
+          "Camera and NVR installation",
+          "Power and network integration",
+          "Live monitoring station setup",
+          "Mobile and remote access configuration"
+        ]
+      },
+      {
+        title: "Verification and Handover",
+        content:
+          "We test image quality, event playback, and alert workflows to ensure practical reliability for real-world operations.",
+        bullets: [
+          "Day/night performance checks",
+          "Motion and event rule validation",
+          "User access and permissions setup",
+          "Operator training and support notes"
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "Do you provide CCTV solutions with remote viewing?",
+        answer:
+          "Yes. We configure secure remote access so authorized users can monitor live and recorded footage from approved devices."
+      },
+      {
+        question: "Can CCTV be integrated with access control systems?",
+        answer:
+          "Yes. We can align CCTV with access events for better incident visibility and audit control."
+      }
+    ],
+    relatedServices: ["access-control", "structured-cabling"]
+  },
+
+  {
+    slug: "telephony-systems",
+    title: "Telephony Systems in Dubai",
+    shortTitle: "Telephony Systems",
+    heroImage:
+      "/Images/office-renovation.webp",
+    heroAlt: "Business telephony and VoIP setup for multi-line communication",
+    accentColor: "#7f78cf",
+    location: "Dubai, UAE",
+    primaryKeyword: "Business telephony systems Dubai",
+    secondaryKeywords: [
+      "VoIP integration UAE",
+      "multi-line office phone setup",
+      "IP telephony installation"
+    ],
+    intro:
+      "We deploy business phone systems with VoIP integration, multi-line routing, and scalable communication architecture for growing teams.",
+    galleryImages: [
+      "/Images/office-renovation.webp",
+      "/Images/Structured-Cabling-works.webp",
+      "/Images/Commercial-Fitouts-dubai.webp",
+      "/Images/MEP-works.webp"
+    ],
+    sectionImages: [
+      "/Images/office-renovation.webp",
+      "/Images/Structured-Cabling-works.webp",
+      "/Images/Commercial-Fitouts-dubai.webp"
+    ],
+    sections: [
+      {
+        title: "Communication Needs Assessment",
+        content:
+          "We assess call flows, team structure, and operational hours to define a telephony architecture that fits daily business needs.",
+        bullets: [
+          "Extension and department mapping",
+          "Inbound and outbound call flow design",
+          "Auto-attendant planning",
+          "Scalability forecasting"
+        ]
+      },
+      {
+        title: "VoIP and PBX Deployment",
+        content:
+          "Phone systems are configured with reliable network integration, feature setup, and clear user provisioning standards.",
+        bullets: [
+          "IP PBX and SIP setup",
+          "Desk phone and softphone configuration",
+          "Call recording and routing policies",
+          "CRM or platform integration support"
+        ]
+      },
+      {
+        title: "Optimization and Support",
+        content:
+          "Post-deployment support focuses on call quality tuning, policy updates, and smooth adoption by internal teams.",
+        bullets: [
+          "Call quality and QoS validation",
+          "User onboarding and training",
+          "Permission and role management",
+          "Expansion and migration support"
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "Can you migrate our existing phone setup to VoIP?",
+        answer:
+          "Yes. We can plan phased migration to VoIP with minimal disruption to business operations."
+      },
+      {
+        question: "Do you support both desk phones and mobile clients?",
+        answer:
+          "Yes. We configure unified telephony for desk devices, softphones, and approved mobile endpoints."
+      }
+    ],
+    relatedServices: ["structured-cabling", "wifi-network-setup"]
+  },
+
+  {
+    slug: "gate-barriers",
+    title: "Gate Barrier Systems in Dubai",
+    shortTitle: "Gate Barrier Systems",
+    heroImage:
+      "/Images/civil-works-dubai.webp",
+    heroAlt: "Automated gate barrier and vehicle access control installation",
+    accentColor: "#b17a52",
+    location: "Dubai, UAE",
+    primaryKeyword: "Gate barrier systems Dubai",
+    secondaryKeywords: [
+      "automated vehicle access control",
+      "parking barrier installation UAE",
+      "site entry safety barriers"
+    ],
+    intro:
+      "We install automated gate barriers for controlled vehicle access, entry safety, and smooth movement across residential, commercial, and industrial sites.",
+    galleryImages: [
+      "/Images/civil-works-dubai.webp",
+      "/Images/Commercial-Fitouts-dubai.webp",
+      "/Images/office-renovation.webp",
+      "/Images/MEP-works.webp"
+    ],
+    sectionImages: [
+      "/Images/civil-works-dubai.webp",
+      "/Images/Commercial-Fitouts-dubai.webp",
+      "/Images/office-renovation.webp"
+    ],
+    sections: [
+      {
+        title: "Entry Control Planning",
+        content:
+          "We evaluate traffic volume, entry points, and safety requirements to define barrier type and lane logic.",
+        bullets: [
+          "Entry and exit lane design",
+          "Barrier arm selection by site type",
+          "Safety sensor and loop planning",
+          "Manual override and emergency strategy"
+        ]
+      },
+      {
+        title: "Installation and Integration",
+        content:
+          "Barrier systems are installed with power, control units, and integration options for cards, tags, or biometric access.",
+        bullets: [
+          "Barrier motor and cabinet setup",
+          "Control panel and safety sensor wiring",
+          "Access control system integration",
+          "Traffic signal and signage coordination"
+        ]
+      },
+      {
+        title: "Testing and Compliance",
+        content:
+          "We test barrier response, safety behavior, and operational continuity before handover to facility teams.",
+        bullets: [
+          "Open/close cycle reliability checks",
+          "Obstacle detection validation",
+          "Entry authorization testing",
+          "Operator training and SOP handover"
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "Can gate barriers be connected to existing access control systems?",
+        answer:
+          "Yes. We can integrate barriers with card, RFID, and other authorized entry systems based on site requirements."
+      },
+      {
+        question: "Do you provide gate barriers for both parking and secured compounds?",
+        answer:
+          "Yes. We install systems for parking lots, compounds, industrial yards, and controlled delivery zones."
+      }
+    ],
+    relatedServices: ["access-control", "cctv"]
+  },
+
+  {
+    slug: "wifi-network-setup",
+    title: "Wi-Fi and Network Setup in Dubai",
+    shortTitle: "Wi-Fi & Network Setup",
+    heroImage:
+      "/Images/Structured-Cabling-works.webp",
+    heroAlt: "Professional Wi-Fi and network setup for offices and facilities",
+    accentColor: "#39a9b4",
+    location: "Dubai, UAE",
+    primaryKeyword: "Wi-Fi network setup Dubai",
+    secondaryKeywords: [
+      "office Wi-Fi installation UAE",
+      "enterprise network design Dubai",
+      "wireless coverage optimization"
+    ],
+    intro:
+      "Federal Fix provides professional network design and Wi-Fi installation for offices, facilities, and multi-zone sites requiring stable connectivity.",
+    galleryImages: [
+      "/Images/Structured-Cabling-works.webp",
+      "/Images/Structured-Cabling-works-1.webp",
+      "/Images/office-renovation.webp",
+      "/Images/Commercial-Fitouts-dubai.webp"
+    ],
+    sectionImages: [
+      "/Images/Structured-Cabling-works.webp",
+      "/Images/Structured-Cabling-works-1.webp",
+      "/Images/office-renovation.webp"
+    ],
+    sections: [
+      {
+        title: "Network Design and Site Survey",
+        content:
+          "We assess floor layout, user density, and traffic profile to build a network that supports daily load and future growth.",
+        bullets: [
+          "Coverage and dead-zone assessment",
+          "Access point placement planning",
+          "Bandwidth and capacity design",
+          "Segmentation and security planning"
+        ]
+      },
+      {
+        title: "Deployment and Configuration",
+        content:
+          "Routers, switches, and access points are installed and configured with performance and resilience in mind.",
+        bullets: [
+          "Enterprise AP installation",
+          "Switching and VLAN configuration",
+          "Guest and corporate network setup",
+          "QoS and traffic policy tuning"
+        ]
+      },
+      {
+        title: "Validation and Ongoing Support",
+        content:
+          "Final validation includes speed and roaming checks, with documentation for IT teams and future expansion.",
+        bullets: [
+          "Coverage heat-map validation",
+          "Load and speed testing",
+          "Roaming behavior checks",
+          "As-built network documentation"
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "Can you improve weak Wi-Fi coverage in existing offices?",
+        answer:
+          "Yes. We run site surveys and optimize AP placement, channel settings, and network segmentation for improved coverage and stability."
+      },
+      {
+        question: "Do you support separate guest and internal staff networks?",
+        answer:
+          "Yes. We configure secure segmentation for guest access, staff usage, and device-specific policies."
+      }
+    ],
+    relatedServices: ["structured-cabling", "telephony-systems"]
+  },
+
+  {
+    slug: "access-control",
+    title: "Access Control Systems in Dubai",
+    shortTitle: "Access Control Systems",
+    heroImage:
+      "/Images/office-renovation.webp",
+    heroAlt: "Integrated access control with biometrics and secure entry management",
+    accentColor: "#ab6de0",
+    location: "Dubai, UAE",
+    primaryKeyword: "Access control systems Dubai",
+    secondaryKeywords: [
+      "biometric access control UAE",
+      "time attendance integration",
+      "secure entry management systems"
+    ],
+    intro:
+      "We implement access control solutions with biometrics, credential-based entry, and attendance integration for secure and traceable facility access.",
+    galleryImages: [
+      "/Images/office-renovation.webp",
+      "/Images/Structured-Cabling-works.webp",
+      "/Images/Commercial-Fitouts-dubai.webp",
+      "/Images/MEP-works.webp"
+    ],
+    sectionImages: [
+      "/Images/office-renovation.webp",
+      "/Images/Structured-Cabling-works.webp",
+      "/Images/Commercial-Fitouts-dubai.webp"
+    ],
+    sections: [
+      {
+        title: "Security Workflow Design",
+        content:
+          "Access policies are structured by department, role, and zone sensitivity to keep entry control practical and auditable.",
+        bullets: [
+          "Zone-based permission structure",
+          "User role and access hierarchy planning",
+          "Entry/exit logging requirements",
+          "Emergency release strategy"
+        ]
+      },
+      {
+        title: "Hardware and Software Integration",
+        content:
+          "Controllers, readers, locks, and biometric devices are integrated with software dashboards for complete visibility.",
+        bullets: [
+          "Reader and controller installation",
+          "Door lock and relay integration",
+          "Biometric enrollment setup",
+          "Attendance and reporting integration"
+        ]
+      },
+      {
+        title: "Operations and Maintenance",
+        content:
+          "After deployment, we support policy tuning, user administration, and system health checks to sustain reliability.",
+        bullets: [
+          "Access audit and log verification",
+          "User onboarding and revocation process",
+          "Periodic device health checks",
+          "Operational support and updates"
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "Can access control integrate with biometric attendance?",
+        answer:
+          "Yes. We can integrate biometric readers with time attendance platforms and role-based access policies."
+      },
+      {
+        question: "Do you support multi-site access management?",
+        answer:
+          "Yes. We configure centralized management for multiple locations with controlled permissions and reporting."
+      }
+    ],
+    relatedServices: ["cctv", "gate-barriers"]
+  },
+
+  {
+    slug: "iptv-installation",
+    title: "IPTV Installation in Dubai",
+    shortTitle: "IPTV Installation",
+    heroImage:
+      "/Images/Commercial-Fitouts-dubai.webp",
+    heroAlt: "Customized IPTV installation for hotels, offices, and residential complexes",
+    accentColor: "#ef6b66",
+    location: "Dubai, UAE",
+    primaryKeyword: "IPTV installation Dubai",
+    secondaryKeywords: [
+      "hotel IPTV systems UAE",
+      "commercial IPTV integration",
+      "residential IPTV setup and management"
+    ],
+    intro:
+      "We deliver customized IPTV systems for hotels, offices, and residential communities with scalable channel management and stable distribution.",
+    galleryImages: [
+      "/Images/Commercial-Fitouts-dubai.webp",
+      "/Images/office-renovation.webp",
+      "/Images/Structured-Cabling-works.webp",
+      "/Images/fit-out-projects.webp"
+    ],
+    sectionImages: [
+      "/Images/Commercial-Fitouts-dubai.webp",
+      "/Images/office-renovation.webp",
+      "/Images/Structured-Cabling-works.webp"
+    ],
+    sections: [
+      {
+        title: "IPTV Solution Planning",
+        content:
+          "We define channel strategy, content distribution, and user endpoints based on hospitality, corporate, or residential requirements.",
+        bullets: [
+          "Channel and package planning",
+          "Headend and distribution architecture",
+          "Endpoint and room/device mapping",
+          "Scalability for future units"
+        ]
+      },
+      {
+        title: "Installation and Integration",
+        content:
+          "IPTV infrastructure is installed with network alignment and controlled delivery performance across all target zones.",
+        bullets: [
+          "Server and middleware setup",
+          "Network and multicast configuration",
+          "Display endpoint provisioning",
+          "CMS and control integration"
+        ]
+      },
+      {
+        title: "Quality Control and Handover",
+        content:
+          "Before handover, we verify stream quality, channel behavior, and access controls for smooth user experience.",
+        bullets: [
+          "Latency and stream stability checks",
+          "Channel switching performance tests",
+          "User management and permissions setup",
+          "Operational handover documentation"
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "Do you install IPTV systems for hotels and serviced apartments?",
+        answer:
+          "Yes. We build and configure IPTV systems for hospitality properties with room-level endpoint control and scalable management."
+      },
+      {
+        question: "Can IPTV systems run on existing network infrastructure?",
+        answer:
+          "Yes. We assess current infrastructure and advise upgrades where required to ensure stable streaming performance."
+      }
+    ],
+    relatedServices: ["audio-visuals", "wifi-network-setup"]
   }
 ];
+
+export const SERVICES_CONTENT: ServicePageData[] = RAW_SERVICES_CONTENT.map(applyServiceImageOverrides);
 
 export const getServiceBySlug = (slug: string) =>
   SERVICES_CONTENT.find((service) => service.slug === slug);
@@ -1015,10 +1721,17 @@ export const SERVICE_NAME_TO_SLUG: Record<string, string> = {
   "Villa Fit-Out": "villa-fit-out",
   "Retail & Showroom Fit-Out": "retail-showroom-fit-out",
   "Restaurant & Cafe Fit-Out": "restaurant-cafe-fit-out",
-  "Full Turnkey Execution": "full-turnkey-execution"
+  "Full Turnkey Execution": "full-turnkey-execution",
+  "Audio Visuals": "audio-visuals",
+  "Smart Home Solutions": "smart-home-solutions",
+  "Structured Cabling": "structured-cabling",
+  "CCTV": "cctv",
+  "Telephony Systems": "telephony-systems",
+  "Gate Barriers": "gate-barriers",
+  "Wi-Fi & Network Setup": "wifi-network-setup",
+  "Access Control": "access-control",
+  "IPTV Installation": "iptv-installation"
 };
-
-
 
 
 
